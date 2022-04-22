@@ -60,7 +60,6 @@
     position: fixed;
     top: 20vh;
     left: calc(50% - 15rem);
-    display: none;
   }
   
   .backdrop {
@@ -71,9 +70,4 @@
     height: 100vh;
     top: 0;
     left: 0;
-    display: none;
-  }
-
-  .show{
-    display: unset;
   }

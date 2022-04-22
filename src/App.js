@@ -2,24 +2,30 @@ import ToDo from "./components/ToDo";
 import Modal from "./components/Modal";
 import Backdrop from "./components/Backdrop";
 
+import {useState} from 'react';
+
 function App() {
+  const [modalIsOpen, setModalIsOpen]= useState(false);
+
   function closeModalHandler() {
-    const backdrop = document.querySelector(".backdrop");
-    const modal = document.querySelector(".modal");
-    modal.classList.toggle("show");
-    backdrop.classList.toggle("show");
+    setModalIsOpen((modalIsOpen)=> modalIsOpen= !modalIsOpen)    
   }
+
+  let showModal= modalIsOpen && (<div>
+    <Backdrop clicked={closeModalHandler}/>
+      <Modal clicked={closeModalHandler} />
+  </div>)
 
   return (
     <div>
-      <Backdrop/>
-      <Modal clicked={closeModalHandler} />
+     {showModal}
       <h1>My ToDos</h1>
-      <ToDo text="Learn React" />
-      <ToDo text="Master React" />
-      <ToDo text="Explore the full React course" />
+      <ToDo text="Learn React" clicked={closeModalHandler}/>
+      <ToDo text="Master React" clicked={closeModalHandler}/>
+      <ToDo text="Explore the full React course" clicked={closeModalHandler}/>
     </div>
   );
 }
 
 export default App;
+
